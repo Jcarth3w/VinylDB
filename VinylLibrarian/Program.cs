@@ -35,6 +35,15 @@ app.UseRouting();
 
 app.UseAuthorization();
 
+app.UseEndpoints(endpoints => {
+    endpoints.MapControllerRoutes(
+        name: "default",
+        pattern: "{controller=Brain}/{action=Index}");
+
+        endpoints.MapRazorPages();
+});
+
+
 app.MapRazorPages();
 
 app.Run();
