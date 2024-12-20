@@ -1,0 +1,38 @@
+@model IEnumerable<VinylLibrarian.Models.RecordViewModel>
+@{
+    ViewData["Title"] = "Collection";
+}
+
+
+<h2>Collection</h2>
+<header>
+
+</header>
+
+<table class="dataTable">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.Title)</th>
+            <th>@Html.DisplayNameFor(model => model.Artist)</th>
+            <th>@Html.DisplayNameFor(model => model.Genre)</th>
+            <th>@Html.DisplayNameFor(model => model.Img)</th>
+            <th>@Html.DisplayNameFor(model => model.NumSongs)</th>
+            <th>@Html.DisplayNameFor(model => model.Length)</th>
+            <th>@Html.DisplayNameFor(model => model.Rating)</th>
+        </tr>
+    </thead>
+    <tbody>
+         @foreach (var item in Model)
+         {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.Title)</td>
+                <td>@Html.DisplayFor(modelItem => item.Artist)</td>
+                <td>@Html.DisplayFor(modelItem => item.Genre)</td>
+                <td><img src="@item.Img" alt="@item.Title" style="width: 100px; height: auto;" /></td>
+                <td>@Html.DisplayFor(modelItem => item.NumSongs)</td>
+                <td>@Html.DisplayFor(modelItem => item.Length)</td>
+                <td>@Html.DisplayFor(modelItem => item.Rating)</td>
+            </tr>
+         }
+    </tbody>
+</table>

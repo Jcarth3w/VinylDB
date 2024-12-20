@@ -1,0 +1,50 @@
+@model VinylLibrarian.Models.ArtistViewModel
+
+@{
+    ViewData["Title"] = "Artist Details";
+}
+
+
+<header>
+
+</header>
+
+<h1>@Model.Name</h1>
+
+<img src="@Model.Img" alt="@Model.Name"/>
+
+<ul>
+    @foreach (var genre in Model.Genres)
+    {
+        <li>@genre</li>
+    }
+</ul>
+
+<table class="dataTable">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Artist</th>
+            <th>Genre</th>
+            <th>Image</th>
+            <th>Number of Songs</th>
+            <th>Length (mins)</th>
+            <th>Rating</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var record in Model.Records)
+        {
+            <tr>
+                <td>@record.Title</td>
+                <td>@record.Artist</td>
+                <td>@record.Genre</td>
+                <td><img src="@record.Img" alt="@record.Title" style="width: 100px; height: auto;" /></td>
+                <td>@record.NumSongs</td>
+                <td>@record.Length</td>
+                <td>@record.Rating</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
