@@ -36,7 +36,7 @@ app.UseRouting();
 app.UseAuthorization();
 
 app.UseEndpoints(endpoints => {
-    endpoints.MapControllerRoutes(
+    endpoints.MapControllerRoute(
         name: "default",
         pattern: "{controller=Brain}/{action=Index}");
 

@@ -3,6 +3,10 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VinylLibrarian.Tests", "VinylLibrarian.Tests\VinylLibrarian.Tests.csproj", "{5731F75E-3D61-45E8-B1A1-48775F73FD28}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VinylLibrarian", "VinylLibrarian\VinylLibrarian.csproj", "{B0204E0B-A51A-4FE1-8291-8878DCD3757C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -10,5 +14,15 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5731F75E-3D61-45E8-B1A1-48775F73FD28}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5731F75E-3D61-45E8-B1A1-48775F73FD28}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5731F75E-3D61-45E8-B1A1-48775F73FD28}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5731F75E-3D61-45E8-B1A1-48775F73FD28}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B0204E0B-A51A-4FE1-8291-8878DCD3757C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B0204E0B-A51A-4FE1-8291-8878DCD3757C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B0204E0B-A51A-4FE1-8291-8878DCD3757C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B0204E0B-A51A-4FE1-8291-8878DCD3757C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

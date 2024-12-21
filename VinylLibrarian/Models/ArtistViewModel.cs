@@ -15,7 +15,7 @@ namespace VinylLibrarian.Models
 
         public string Img { get; set; }
 
-        public static ArtistViewModel FromRecord(Artist artist)
+        public static ArtistViewModel FromArtist(Artist artist)
         {
             return new ArtistViewModel
             {

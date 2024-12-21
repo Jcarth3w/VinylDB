@@ -11,11 +11,11 @@ using DomainModel;
 
 public class Brain: Controller 
 {
-    public ActionResult Index();
+    //public ActionResult Index();
 
 
-    public ActionResult Collection();
+    //public ActionResult Collection();
 
 
-    public ActionResult Artist();
+    //public ActionResult Artist();
 }

@@ -23,7 +23,7 @@ namespace DomainModel
         public int Rating {get; set;}
 
 
-        public Record(int id, String title, String artist, String genre, String img, int numSongs, int length, int rating)
+        public Record(int id, string title, String artist, string genre, string img, int numSongs, int length, int rating)
         {
             Id = id;
             Title = title;
