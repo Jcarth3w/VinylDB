@@ -5,13 +5,17 @@ namespace DomainModel
     public class Artist
     {
         [Key]
-        public string Name;
+        public int Id { get; set; }
+
+        public string Name {get; set;}
 
         public List<Record> Records {get; set;}
 
         public List<string> Genres {get; set;}
 
         public string Img {get; set;}
+
+        public Artist() { }
 
 
         public Artist(String name, List<Record> records, List<String> genres, String img)
