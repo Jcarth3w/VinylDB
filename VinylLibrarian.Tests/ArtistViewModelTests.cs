@@ -7,7 +7,7 @@ namespace VinylLibrarian.Tests
     public class ArtistViewModelTests
     {
         [Fact]
-        public void FromArtist_CorrectViewModwl()
+        public void FromArtist_CorrectViewModel()
         {
             var artist = new DomainModel.Artist(
             
@@ -103,6 +103,21 @@ namespace VinylLibrarian.Tests
             var viewModel = ArtistViewModel.FromArtist(artist);
 
             Assert.Equal("/images/test.jpg", viewModel.Img);
+        }
+
+        [Fact]
+        public void FromRecord_InvalidImageExtension_ReturnsNullImg()
+        {
+           var artist = new DomainModel.Artist(
+                "Image Test Artist",
+                new List<DomainModel.Record>(),
+                new List<string>(),
+                "/images/test"
+            );
+
+            var viewModel = ArtistViewModel.FromArtist(artist);
+
+            Assert.Null(viewModel.Img);
         }
 
 

@@ -23,18 +23,30 @@ namespace DomainModel
         public int Rating {get; set;}
 
 
-        public Record(int id, string title, String artist, string genre, string img, int numSongs, int length, int rating)
+        public Record(int id, string title, string artist, string genre, string img, int numSongs, int length, int rating)
         {
-            Id = id;
-            Title = title;
-            Artist = artist;
-            Genre = genre;
-            Img = img;
-            NumSongs = numSongs;
-            Length = length;
-            Rating = rating;
+            if (string.IsNullOrEmpty(title))
+            {
+                Id = 0;
+                Title = null;
+                Artist = null;
+                Genre = null;
+                Img = null;
+                NumSongs = 0;
+                Length = 0;
+                Rating = 0;
+            }
+            else
+            {
+                Id = id;
+                Title = title;
+                Artist = artist;
+                Genre = genre;
+                Img = (img != null && (img.EndsWith(".jpg") || img.EndsWith(".png") || img.EndsWith(".jpeg"))) ? img : null;
+                NumSongs = numSongs;
+                Length = length;
+                Rating = rating;
+            }
         }
     }
-
-
 }

@@ -19,7 +19,7 @@ namespace DomainModel
             Name  = name;
             Records = records;
             Genres = genres;
-            Img = img;
+            Img = (img != null && (img.EndsWith(".jpg") || img.EndsWith(".png") || img.EndsWith(".jpeg"))) ? img : null;
         }
 
     }
