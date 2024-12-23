@@ -18,8 +18,9 @@ namespace DomainModel
         public Artist() { }
 
 
-        public Artist(String name, List<Record> records, List<String> genres, String img)
+        public Artist(int id, string name, List<Record> records, List<String> genres, String img)
         {
+            Id = id;
             Name  = name;
             Records = records;
             Genres = genres;

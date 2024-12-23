@@ -11,6 +11,7 @@ namespace VinylLibrarian.Tests
         {
             var artist = new DomainModel.Artist(
             
+                1,
                 "Yo mama",
                 new List<DomainModel.Record>
                 {
@@ -36,6 +37,7 @@ namespace VinylLibrarian.Tests
         public void FromArtist_NullArtistReturnsNull()
         {
             var artist = new DomainModel.Artist(
+                0,
                 null, 
                 null, 
                 null, 
@@ -54,6 +56,7 @@ namespace VinylLibrarian.Tests
         public void FromArtist_RecordsMappedCorrectly()
         {
             var artist = new DomainModel.Artist(
+                1,
                 "Sample Artist",
                 new List<DomainModel.Record>
                 {
@@ -76,6 +79,7 @@ namespace VinylLibrarian.Tests
         public void FromArtist_GenresMappedCorrectly()
         {
             var artist = new DomainModel.Artist(
+                1,
                 "Test Artist",
                 new List<DomainModel.Record>(),
                 new List<string> { "Rock", "Pop" },
@@ -94,6 +98,7 @@ namespace VinylLibrarian.Tests
         public void FromArtist_ImageUrlCorrectlySet()
         {
             var artist = new DomainModel.Artist(
+                1,
                 "Image Test Artist",
                 new List<DomainModel.Record>(),
                 new List<string>(),
@@ -109,6 +114,7 @@ namespace VinylLibrarian.Tests
         public void FromRecord_InvalidImageExtension_ReturnsNullImg()
         {
            var artist = new DomainModel.Artist(
+                1,
                 "Image Test Artist",
                 new List<DomainModel.Record>(),
                 new List<string>(),
@@ -125,6 +131,7 @@ namespace VinylLibrarian.Tests
         public void FromArtist_NoRecordsOrGenres_ReturnsEmptyLists()
         {
             var artist = new DomainModel.Artist(
+                1,
                 "",
                 new List<DomainModel.Record>(),
                 new List<string>(),

@@ -31,6 +31,5 @@ namespace VinylLibrarian.Services
             return db.Record
                 .SingleOrDefault(r => r.Id == id);
         }
-
     }
 }
