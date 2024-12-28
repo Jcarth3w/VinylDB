@@ -1,10 +1,11 @@
 using DomainModel;
 using Microsoft.Extensions.Logging;
 using DomainModel;
+using VinylLibrarian.Services.Interfaces;
 
-namespace VinylLibrarian.Services
+namespace VinylLibrarian.Services.Classes
 {
-    public class RecordService
+    public class RecordService : IRecordServices
     {
         private readonly ILogger<RecordService> logger;
         private readonly IDataContext db;
@@ -25,7 +26,7 @@ namespace VinylLibrarian.Services
                 .ToList();
         }
 
-        public Record getRecordById(int id)
+        public Record findRecordById(int id)
         {
             logger.LogInformation("Getting record of ID: {Id}" + id);
             return db.Record

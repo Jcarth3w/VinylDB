@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Xunit;
 using DomainModel;
-using VinylLibrarian.Services;
+using VinylLibrarian.Services.Classes;
 
 
 namespace VinylLibrarian.Tests
@@ -53,9 +53,9 @@ namespace VinylLibrarian.Tests
         }
 
         [Fact]
-        public void GetRecordById_ReturnsCorrectRecord()
+        public void FindRecordById_ReturnsCorrectRecord()
         {
-            var result = recordService.getRecordById(1);
+            var result = recordService.findRecordById(1);
 
             Assert.NotNull(result);
             Assert.Equal("Album1", result.Title);
@@ -70,7 +70,7 @@ namespace VinylLibrarian.Tests
         [Fact]
         public void GetRecordById_IdNotFound_ReturnsNull()
         {
-            var result = recordService.getRecordById(3);
+            var result = recordService.findRecordById(3);
         
             Assert.Null(result);
         }

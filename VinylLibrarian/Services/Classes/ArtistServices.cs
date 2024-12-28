@@ -1,10 +1,11 @@
 using DomainModel;
 using Microsoft.Extensions.Logging;
 using DomainModel;
+using VinylLibrarian.Services.Interfaces;
 
-namespace VinylLibrarian.Services
+namespace VinylLibrarian.Services.Classes
 {
-    public class ArtistService
+    public class ArtistService : IArtistServices
     {
         private readonly ILogger<ArtistService> logger;
         private readonly IDataContext db;

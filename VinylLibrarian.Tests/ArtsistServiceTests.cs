@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Xunit;
 using DomainModel;
-using VinylLibrarian.Services;
+using VinylLibrarian.Services.Classes;
 
 
 namespace VinylLibrarian.Tests
