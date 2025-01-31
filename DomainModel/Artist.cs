@@ -9,9 +9,9 @@ namespace DomainModel
 
         public string Name {get; set;}
 
-        public List<Record> Records {get; set;}
+        public List<Record> Records {get; set;} = new List<Record>();
 
-        public List<string> Genres {get; set;}
+        public List<string> Genres {get; set;} = new List<string>();
 
         public string Img {get; set;}
 
@@ -19,6 +19,7 @@ namespace DomainModel
 
 
         public Artist(int id, string name, List<Record> records, List<String> genres, String img)
+        public Artist(int id, string name, List<Record> records, List<string> genres, string img)
         {
             Id = id;
             Name  = name;

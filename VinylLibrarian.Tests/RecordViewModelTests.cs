@@ -10,6 +10,7 @@ namespace VinylLibrarian.Tests
         public void FromRecord_CorrectViewModel()
         {
             var record = new DomainModel.Record(1, "The fartening", 1, "Yo mama", "Rock", "/images/test.jpg", 10, 40, 5);
+            var record = new DomainModel.Record(1, "The fartening", 1, "Yo mama", "Rock", "/images/test.jpg", 10, 40, 5);
 
             var viewModel = RecordViewModel.FromRecord(record);
 
@@ -26,7 +27,7 @@ namespace VinylLibrarian.Tests
         [Fact]
         public void FromRecord_AssignsNull_WhenNoTitle()
         {
-            var record = new DomainModel.Record(1, "", 1, "absdasfdsdfadgf", "ASdijhsdfja", "asdfgdds", 22352462, 111111, 4212);
+            var record = new DomainModel.Record(1, "", 0, "absdasfdsdfadgf", "ASdijhsdfja", "asdfgdds", 22352462, 111111, 4212);
 
             var viewModel = RecordViewModel.FromRecord(record);
 

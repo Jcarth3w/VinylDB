@@ -1,11 +1,14 @@
 using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using DomainModel;
 
 namespace DomainModel
 {
     public interface IDataContext
     {
-        DbSet<Record> Record { get; set; }
+        public DbSet<Record> Record {get; set;}
 
-        DbSet<Artist>  Artist {get; set;}
+        public DbSet<Artist> Artist {get; set;}
     }
 }

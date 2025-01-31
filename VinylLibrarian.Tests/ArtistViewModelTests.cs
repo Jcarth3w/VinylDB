@@ -16,7 +16,7 @@ namespace VinylLibrarian.Tests
                 new List<DomainModel.Record>
                 {
                     new DomainModel.Record(1, "The fartening", 1, "Yo mama", "Rock", "/images/album1.jpg", 10, 40, 5),
-                    new DomainModel.Record(2, "Stink", 2, "Yo mama", "Jazz", "/images/album2.jpg", 8, 35, 4)
+                    new DomainModel.Record(2, "Stink", 1, "Yo mama", "Jazz", "/images/album2.jpg", 8, 35, 4)
                 },
                 new List<string> { "Rock", "Jazz" },
                 "/images/test.jpg"
@@ -40,7 +40,7 @@ namespace VinylLibrarian.Tests
                 0,
                 null, 
                 null, 
-                null, 
+                null,
                 null
             );
 
@@ -60,8 +60,8 @@ namespace VinylLibrarian.Tests
                 "Sample Artist",
                 new List<DomainModel.Record>
                 {
-                    new DomainModel.Record(1, "Album1", 1, "Sample Artist", "Rock", "/images/album1.jpg", 10, 40, 5),
-                    new DomainModel.Record(2, "Album2", 2, "Sample Artist", "Jazz", "/images/album2.jpg", 8, 35, 4)
+                    new DomainModel.Record(1, "Album1", 2, "Sample Artist", "Rock", "/images/album1.jpg", 10, 40, 5),
+                    new DomainModel.Record(2, "Album2", 2,"Sample Artist", "Jazz", "/images/album2.jpg", 8, 35, 4)
                 },
                 new List<string> { "Rock", "Jazz" },
                 "/images/test.jpg"
@@ -131,7 +131,7 @@ namespace VinylLibrarian.Tests
         public void FromArtist_NoRecordsOrGenres_ReturnsEmptyLists()
         {
             var artist = new DomainModel.Artist(
-                1,
+                0,
                 "",
                 new List<DomainModel.Record>(),
                 new List<string>(),
