@@ -1,7 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-
 namespace DomainModel
 {
     public class Record
@@ -12,7 +11,7 @@ namespace DomainModel
         public string Title {get; set;}
 
         [ForeignKey("Artist")]
-        public int ArtistId {get; set;}
+        public int ArtistId { get; set; }
 
         public string Artist {get; set;}
 

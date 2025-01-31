@@ -1,22 +1,38 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using VinylLibrarian.Services.Interfaces;
+using VinylLibrarian.Services.Classes;
 using WebIdentity.Data;
+using DomainModel;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection")
+    ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
+
+// Register your DbContexts
+builder.Services.AddDbContext<DataContext>(options =>
+    options.UseSqlite(connectionString));
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlite(connectionString));
-builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
+// Add Identity
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<ApplicationDbContext>();
+
+// Add exception filters and Razor Pages
+builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 builder.Services.AddRazorPages();
+
+// Register services for DI
+builder.Services.AddScoped<IDataContext, DataContext>();
+builder.Services.AddScoped<IArtistServices, ArtistService>();
+builder.Services.AddScoped<IRecordServices, RecordService>();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+// Configure the HTTP request pipeline
 if (app.Environment.IsDevelopment())
 {
     app.UseMigrationsEndPoint();
@@ -24,26 +40,22 @@ if (app.Environment.IsDevelopment())
 else
 {
     app.UseExceptionHandler("/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
-
 app.UseRouting();
-
 app.UseAuthorization();
 
-app.UseEndpoints(endpoints => {
+app.UseEndpoints(endpoints =>
+{
     endpoints.MapControllerRoute(
         name: "default",
-        pattern: "{controller=Brain}/{action=Index}");
+        pattern: "{controller=Brain}/{action=Collection}/{id?}");
 
-        endpoints.MapRazorPages();
+    endpoints.MapRazorPages();
 });
 
-
 app.MapRazorPages();
-
 app.Run();

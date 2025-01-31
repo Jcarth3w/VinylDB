@@ -10,7 +10,7 @@ namespace VinylLibrarian.Tests
         public void FromArtist_CorrectViewModel()
         {
             var artist = new DomainModel.Artist(
-
+            
                 1,
                 "Yo mama",
                 new List<DomainModel.Record>
@@ -37,7 +37,7 @@ namespace VinylLibrarian.Tests
         public void FromArtist_NullArtistReturnsNull()
         {
             var artist = new DomainModel.Artist(
-                0, 
+                0,
                 null, 
                 null, 
                 null,
@@ -56,7 +56,7 @@ namespace VinylLibrarian.Tests
         public void FromArtist_RecordsMappedCorrectly()
         {
             var artist = new DomainModel.Artist(
-                2,
+                1,
                 "Sample Artist",
                 new List<DomainModel.Record>
                 {

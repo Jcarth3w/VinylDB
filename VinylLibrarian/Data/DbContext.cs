@@ -13,7 +13,6 @@ namespace DomainModel
 
         public string DbPath {get;}
 
-
         public DataContext(DbContextOptions<DataContext> options) : base(options) {}
 
         public DataContext()

@@ -5,7 +5,8 @@ namespace DomainModel
     public class Artist
     {
         [Key]
-        public int Id {get; set;}
+        public int Id { get; set; }
+
         public string Name {get; set;}
 
         public List<Record> Records {get; set;} = new List<Record>();
@@ -14,9 +15,10 @@ namespace DomainModel
 
         public string Img {get; set;}
 
-        public Artist() {}
+        public Artist() { }
 
 
+        public Artist(int id, string name, List<Record> records, List<String> genres, String img)
         public Artist(int id, string name, List<Record> records, List<string> genres, string img)
         {
             Id = id;

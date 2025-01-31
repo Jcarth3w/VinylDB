@@ -10,6 +10,7 @@ namespace VinylLibrarian.Tests
         public void FromRecord_CorrectViewModel()
         {
             var record = new DomainModel.Record(1, "The fartening", 1, "Yo mama", "Rock", "/images/test.jpg", 10, 40, 5);
+            var record = new DomainModel.Record(1, "The fartening", 1, "Yo mama", "Rock", "/images/test.jpg", 10, 40, 5);
 
             var viewModel = RecordViewModel.FromRecord(record);
 
