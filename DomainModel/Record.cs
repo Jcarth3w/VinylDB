@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 
 namespace DomainModel
@@ -9,6 +10,9 @@ namespace DomainModel
         public int Id { get; set;}
 
         public string Title {get; set;}
+
+        [ForeignKey("Artist")]
+        public int ArtistId {get; set;}
 
         public string Artist {get; set;}
 
@@ -22,13 +26,16 @@ namespace DomainModel
 
         public int Rating {get; set;}
 
+        public Record() {}
 
-        public Record(int id, string title, string artist, string genre, string img, int numSongs, int length, int rating)
+
+        public Record(int id, string title, int artistId, string artist, string genre, string img, int numSongs, int length, int rating)
         {
             if (string.IsNullOrEmpty(title))
             {
                 Id = 0;
                 Title = null;
+                ArtistId = 0;
                 Artist = null;
                 Genre = null;
                 Img = null;
@@ -40,6 +47,7 @@ namespace DomainModel
             {
                 Id = id;
                 Title = title;
+                ArtistId = artistId;
                 Artist = artist;
                 Genre = genre;
                 Img = (img != null && (img.EndsWith(".jpg") || img.EndsWith(".png") || img.EndsWith(".jpeg"))) ? img : null;
