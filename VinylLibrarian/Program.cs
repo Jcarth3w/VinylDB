@@ -8,8 +8,12 @@ using DomainModel;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+var databasePath = Path.Combine(Directory.GetCurrentDirectory(), "collection.db");
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection")
     ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
+
+Console.WriteLine($"Using database: {connectionString}");
+Console.WriteLine($"Using database path: {databasePath}");
 
 // Register your DbContexts
 builder.Services.AddDbContext<DataContext>(options =>
@@ -52,7 +56,7 @@ app.UseEndpoints(endpoints =>
 {
     endpoints.MapControllerRoute(
         name: "default",
-        pattern: "{controller=Brain}/{action=Collection}/{id?}");
+        pattern: "{controller=Brain}/{action=Collection}");
 
     endpoints.MapRazorPages();
 });

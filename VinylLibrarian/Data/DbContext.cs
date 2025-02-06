@@ -19,8 +19,5 @@ namespace DomainModel
         {
             DbPath = "collection.db";
         }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder options)
-            => options.UseSqlite($"Data Source={DbPath}");
     }
 }

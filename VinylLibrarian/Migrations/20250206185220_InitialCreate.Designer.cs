@@ -10,14 +10,14 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace VinylLibrarian.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20250131192717_InitialCreate")]
+    [Migration("20250206185220_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder.HasAnnotation("ProductVersion", "8.0.11");
+            modelBuilder.HasAnnotation("ProductVersion", "9.0.0");
 
             modelBuilder.Entity("DomainModel.Artist", b =>
                 {
@@ -25,7 +25,7 @@ namespace VinylLibrarian.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Genres")
+                    b.PrimitiveCollection<string>("Genres")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
