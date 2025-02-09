@@ -21,17 +21,17 @@ namespace VinylLibrarian.Models
 
         public int Rating { get; set; }
 
-        public static RecordViewModel FromRecord(Record reocrd)
+        public static RecordViewModel FromRecord(Record record)
         {
             return new RecordViewModel
             {
-                Title = reocrd.Title,
-                Artist = reocrd.Artist,
-                Genre = reocrd.Genre,
-                Img = reocrd.Img,
-                NumSongs = reocrd.NumSongs,
-                Length = reocrd.Length,
-                Rating = reocrd.Rating
+                Title = record.Title,
+                Artist = record.Artist,
+                Genre = record.Genre,
+                Img = record.Img,
+                NumSongs = record.NumSongs,
+                Length = record.Length,
+                Rating = record.Rating
             };
         }
     }

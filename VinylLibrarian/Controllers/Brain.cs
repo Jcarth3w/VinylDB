@@ -37,7 +37,7 @@ public class Brain : Controller
     public IActionResult Collection()
     {
         var records = RecordServices.getAllRecords()
-            .Select(r => RecordViewModel.FromRecord(r));
+            .Select(r => RecordViewModel.FromRecord(r)).ToList();
         return View(records);
     }
 

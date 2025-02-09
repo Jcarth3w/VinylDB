@@ -36,6 +36,9 @@ builder.Services.AddScoped<IRecordServices, RecordService>();
 
 var app = builder.Build();
 
+builder.Logging.AddConsole(); // For logging to the console
+builder.Logging.AddDebug();
+
 // Configure the HTTP request pipeline
 if (app.Environment.IsDevelopment())
 {
@@ -59,6 +62,12 @@ app.UseEndpoints(endpoints =>
         pattern: "{controller=Brain}/{action=Collection}");
 
     endpoints.MapRazorPages();
+
+    /* endpoints.MapGet("/", async context =>
+    {
+        context.Response.Redirect("/Brain/Collection");
+    });
+    */
 });
 
 app.MapRazorPages();
