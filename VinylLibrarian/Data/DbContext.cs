@@ -15,9 +15,17 @@ namespace DomainModel
 
         public DataContext(DbContextOptions<DataContext> options) : base(options) {}
 
-        public DataContext()
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            DbPath = "collection.db";
+            if (!optionsBuilder.IsConfigured) // Ensures we only configure if DI hasn't already
+            {
+                string dbFileName = "collection.db";
+                string folderPath = Directory.GetCurrentDirectory();
+                string dbPath = Path.Combine(folderPath, dbFileName);
+
+                optionsBuilder.UseSqlite($"Data Source={dbPath}");
+            }
         }
+
     }
 }
