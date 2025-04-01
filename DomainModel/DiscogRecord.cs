@@ -7,17 +7,19 @@ namespace DomainModel
     {
         public string Title {get; set;}
         public string Artist {get; set;}
-        public string Img {get; set;}
+        public string Genre {get; set;}
+
+
+        public  DiscogRecord () {}
+
+
+        public DiscogRecord (string title, string artist, string genre) 
+        {
+            Title = title;
+            Artist = artist;
+            Genre = genre;
+        }
+
     }
-    public DiscogRecord () {}
-
-
-    public DiscogRecord (string title, string artist, string img) 
-    {
-        Title = title,
-        Artist = artist,
-        Img = img 
-    }
-
 
 }

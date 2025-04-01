@@ -1,0 +1,20 @@
+@model IEnumerable<VinylLibrarian.Models.DiscogViewModel>
+@{
+    ViewData["Title"] = "Browse";
+}
+
+<h2>Browse</h2>
+
+<div class="record-grid">
+    @foreach (var item in Model)
+    {
+        <div class="record-card">
+            <img src="" alt="@item.Title" class="record-img" />
+            <div class="record-title">@item.Title</div>
+            <div class="record-info">
+                <span>@item.Artist</span>
+                <span>@item.Genre</span>
+            </div>
+        </div>
+    }
+</div>

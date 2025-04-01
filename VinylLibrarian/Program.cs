@@ -33,6 +33,8 @@ builder.Services.AddRazorPages();
 builder.Services.AddScoped<IDataContext, DataContext>();
 builder.Services.AddScoped<IArtistServices, ArtistService>();
 builder.Services.AddScoped<IRecordServices, RecordService>();
+builder.Services.AddHttpClient<IDiscogServices, DiscogServices>();
+
 
 var app = builder.Build();
 
