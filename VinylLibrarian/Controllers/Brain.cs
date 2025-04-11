@@ -38,9 +38,13 @@ public class Brain : Controller
     */
 
     [HttpGet]
-    public async Task<IActionResult> Browse()
+    public async Task<IActionResult> Browse(int page = 1)
     {
-        var albums = await DiscogServices.SearchAlbumsAsync("Pink Floyd", 10, 1) ?? new List<DiscogRecord>();
+
+        const int pageSize = 12;
+
+        var albums = await DiscogServices.SearchAlbumsAsync("*", pageSize, page) ?? new List<DiscogRecord>();
+        
 
 
         if (albums == null)
@@ -53,6 +57,14 @@ public class Brain : Controller
         _logger.LogInformation($"Found {albums.Count} albums");
 
         var viewModel = albums.Select(a => DiscogViewModel.FromDiscogRecord(a)).ToList();
+
+        foreach (var vm in viewModel)
+{
+        _logger.LogInformation($"Album: {vm.Title}, Img URL: {vm.Img}");
+}
+
+        ViewBag.CurrentPage = page;
+        ViewBag.HasMore = albums.Count == pageSize;
 
         return View(viewModel); 
     }

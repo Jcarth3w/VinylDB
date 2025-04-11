@@ -1,6 +1,8 @@
 @model IEnumerable<VinylLibrarian.Models.DiscogViewModel>
 @{
     ViewData["Title"] = "Browse";
+    var currentPage = ViewBag.CurrentPage ?? 1;
+    var hasMore = ViewBag.HasMore ?? false;
 }
 
 <h2>Browse</h2>
@@ -9,12 +11,31 @@
     @foreach (var item in Model)
     {
         <div class="record-card">
-            <img src="" alt="@item.Title" class="record-img" />
+            <img src="@item.Img" alt="@item.Title" class="record-img" />
             <div class="record-title">@item.Title</div>
             <div class="record-info">
                 <span>@item.Artist</span>
-                <span>@item.Genre</span>
+                 <span>@string.Join(", ", item.Genre.Take(3))</span>
             </div>
         </div>
     }
+</div>
+
+
+<div class="pagination-controls">
+    <form method="get" asp-action="Browse" style="display: inline;">
+        @if (currentPage > 1)
+        {
+            <input type="hidden" name="page" value="@(currentPage - 1)" />
+            <button class="btn" type="submit">Previous</button>
+        }
+    </form>
+
+    <form method="get" asp-action="Browse" style="display: inline;">
+        @if (hasMore)
+        {
+            <input type="hidden" name="page" value="@(currentPage + 1)" />
+            <button class="btn" type="submit">Next</button>
+        }
+    </form>
 </div>

@@ -11,7 +11,9 @@ namespace VinylLibrarian.Models
 
         public string Artist { get; set; }
 
-        public string Genre { get; set; }
+        public List<string> Genre { get; set; }
+
+        public string Img { get; set; }
 
 
         public static DiscogViewModel FromDiscogRecord(DiscogRecord discogRecord)
@@ -23,7 +25,8 @@ namespace VinylLibrarian.Models
             {
                 Title = discogRecord.Title,
                 Artist = discogRecord.Artist,
-                Genre = discogRecord.Genre
+                Genre = discogRecord.Genre,
+                Img = discogRecord.Cover_Image,
             };
         }
     }

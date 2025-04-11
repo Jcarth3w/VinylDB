@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using VinylLibrarian.Services.Interfaces;
 using VinylLibrarian.Services.Classes;
 using VinylLibrarian.Services.OAuth;
+using Microsoft.Extensions.Options;
 using WebIdentity.Data;
 using DomainModel;
 
@@ -36,8 +37,14 @@ builder.Services.AddScoped<IArtistServices, ArtistService>();
 builder.Services.AddScoped<IRecordServices, RecordService>();
 builder.Services.AddHttpClient<IDiscogServices, DiscogServices>();
 builder.Services.Configure<DiscogsOAuthKeys>(builder.Configuration.GetSection("Discogs"));
-builder.Services.AddSingleton<DiscogsOAuthKeys>();
-builder.Services.AddHttpClient<DiscogsOAuthKeys>();
+
+builder.Services.AddSingleton<DiscogsOAuthKeys>(sp =>
+{
+    var options = sp.GetRequiredService<IOptions<DiscogsOAuthKeys>>();
+    return new DiscogsOAuthKeys(options, sp.GetRequiredService<HttpClient>());
+});
+
+builder.Services.AddHttpClient();
 
 
 var app = builder.Build();
@@ -59,17 +66,6 @@ else
 using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;
-    var oauthHelper = services.GetRequiredService<DiscogsOAuthKeys>();
-
-    var token = await oauthHelper.GetAccessTokenAsync();
-    if (!string.IsNullOrEmpty(token))
-    {
-        Console.WriteLine($"Access token obtained: {token}");
-    }
-    else
-    {
-        Console.WriteLine("Failed to obtain access token.");
-    }
 }
 
 app.UseHttpsRedirection();

@@ -2,7 +2,6 @@ html {
   font-size: 14px;
   position: relative;
   min-height: 100%;
-  height: 100%;
   margin: 0;
   padding: 0;
   border: 10px solid #234F6A; 
@@ -15,15 +14,12 @@ html {
   }
 }
 
-
-
 body {
   margin-bottom: 60px;
   background-color: #1D1C1A;
   color: rgb(236, 237, 185);
   
 }
-
 
 .navbar {
   background-color: #1D1C1A; 
@@ -82,7 +78,6 @@ body {
 
 }
 
-
 .btn{
   background-color: #282643;
   margin-top: 10px;
@@ -138,6 +133,17 @@ body {
   text-align: right;
   font-weight: bold;
   color: #aaa; 
+}
+
+
+.pagination-controls {
+  margin-top: 1rem;
+  text-align: center;
+  gap: 1rem;
+}
+
+.pagination-controls form {
+  display: inline;
 }
 
 

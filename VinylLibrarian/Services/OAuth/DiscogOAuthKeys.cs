@@ -12,6 +12,7 @@ namespace VinylLibrarian.Services.OAuth
     { 
         public string ConsumerKey { get; set; } = string.Empty;
         public string ConsumerSecret { get; set; } = string.Empty;
+        public string AccessToken { get; set; }
 
         private readonly HttpClient _httpClient;
 
@@ -20,6 +21,7 @@ namespace VinylLibrarian.Services.OAuth
             ConsumerKey = oauthKeys.Value.ConsumerKey;
             ConsumerSecret = oauthKeys.Value.ConsumerSecret;
             _httpClient = httpClient;
+            _httpClient.DefaultRequestHeaders.UserAgent.ParseAdd("VinylLibrarian/1.0");
         }
         
         public DiscogsOAuthKeys() {}
@@ -27,29 +29,34 @@ namespace VinylLibrarian.Services.OAuth
         public async Task<string> GetAccessTokenAsync()
         {
             var requestTokenUrl = "https://api.discogs.com/oauth/request_token";
-            var authHeader = $"OAuth oauth_consumer_key=\"{ConsumerKey}\", oauth_nonce=\"{Guid.NewGuid()}\", oauth_signature=\"{ConsumerSecret}&\", oauth_signature_method=\"PLAINTEXT\", oauth_timestamp=\"{DateTimeOffset.UtcNow.ToUnixTimeSeconds()}\", oauth_version=\"1.0\"";
+            var authHeader = $"OAuth oauth_consumer_key=\"{ConsumerKey}\", " +
+                     $"oauth_nonce=\"{Guid.NewGuid()}\", " +
+                     $"oauth_signature=\"{ConsumerSecret}&\", " +
+                     $"oauth_signature_method=\"PLAINTEXT\", " +
+                     $"oauth_timestamp=\"{DateTimeOffset.UtcNow.ToUnixTimeSeconds()}\", " +
+                     $"oauth_version=\"1.0\"";
 
-            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("OAuth", authHeader);
 
-            var response = await _httpClient.PostAsync(requestTokenUrl, new StringContent(""));
+
+            var request = new HttpRequestMessage(HttpMethod.Post, requestTokenUrl);
+            request.Headers.Authorization = new AuthenticationHeaderValue("OAuth", authHeader.Substring(6));
+            request.Content = new StringContent("", Encoding.UTF8, "application/x-www-form-urlencoded");
+
+            var response = await _httpClient.SendAsync(request);
 
             if (response.IsSuccessStatusCode)
             {
                 var responseBody = await response.Content.ReadAsStringAsync();
-                Console.WriteLine("Request Token Response: " + responseBody);
-                
-                // Extract request token and return it
                 var queryParams = HttpUtility.ParseQueryString(responseBody);
                 var requestToken = queryParams["oauth_token"];
-                var requestTokenSecret = queryParams["oauth_token_secret"];
 
-                Console.WriteLine($"Authorize at: https://www.discogs.com/oauth/authorize?oauth_token={requestToken}");
-                
-                return requestToken;
+                // Here, save the request token for further use
+                AccessToken = requestToken; // This is the access token you need
+                return AccessToken;
             }
             else
             {
-                Console.WriteLine("Failed to get request token: " + response.StatusCode);
+                // Handle token request failure
                 return null;
             }
         }
